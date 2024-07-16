@@ -2,11 +2,15 @@ import os
 from mutagen.mp3 import MP3
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Spotify credentials
-SPOTIPY_CLIENT_ID = '006a924a078849489cbc0aa89a967fc1'
-SPOTIPY_CLIENT_SECRET = '18bac303d63d48d7a6cefb0cd11a0932'
-SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback'
+SPOTIPY_CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID')
+SPOTIPY_CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET')
+SPOTIPY_REDIRECT_URI = os.getenv('SPOTIPY_REDIRECT_URI')
 
 # Authenticate with Spotify
 scope = 'user-library-modify'
@@ -16,7 +20,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIPY_CLIENT_ID,
                                                scope=scope))
 
 # Directory containing your MP3 files
-mp3_directory = r'C:\Users\JOEL\Downloads\Music\Culture'
+mp3_directory = r'C:\Users\JOEL\Music\6LACK - 6PC Hot (EP)'
 
 # List to store song titles and artists
 song_data = []
